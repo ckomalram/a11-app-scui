@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-lg-6">
+    <h2>{{accion}} Estudiante</h2>
+  </div>
+</div>
+<!-- <pre> {{ myform.value | json}} </pre> -->
+<div class="row">
+  <div class="col-lg-4">
+    <form autocomplete="off" [formGroup]="myform">
+      <div class="col-lg-12">
+        <mat-form-field  class="example-container" [style.fontSize.px]="16">
+          <mat-label>Nombre Completo</mat-label>
+          <input matInput placeholder="Placeholder" formControlName="nombre">
+        </mat-form-field>
+        <div  style="margin-top: -20px;" class="mda-form-msg" *ngIf="myform.get('nombre').hasError('required') && myform.get('nombre').touched">
+          <span>Este campo es <strong>requerido!</strong> </span>
+        </div>
+        <div  style="margin-top: -20px;" class="mda-form-msg" *ngIf="myform.get('nombre').hasError('maxlength') && myform.get('nombre').touched">
+          <span>El campo debe tener máximo 20 caracteres.  </span>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <mat-form-field  class="example-container" [style.fontSize.px]="16">
+          <mat-label>Correo</mat-label>
+          <input matInput placeholder="Placeholder" formControlName="correo">
+        </mat-form-field>
+        <div  style="margin-top: -20px;" class="mda-form-msg" *ngIf="myform.get('correo').hasError('required') && myform.get('correo').touched">
+          <span>Este campo es <strong>requerido!</strong> </span>
+        </div>
+        <div  style="margin-top: -20px;" class="mda-form-msg" *ngIf="myform.get('correo').hasError('email') && myform.get('correo').touched">
+          <span>Solo formato email <strong>example@example.com</strong> </span>
+        </div>
+      </div>
+      <br><br>
+      <div class="col-lg-12">
+        <mat-form-field class="example-container" appearance="fill">
+          <mat-label>Fecha de Ingreso</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fechaIngreso">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+        <div  style="margin-top: -20px;" class="mda-form-msg" *ngIf="myform.get('fechaIngreso').hasError('required') && myform.get('fechaIngreso').touched">
+          <span>Este campo es <strong>requerido!</strong> </span>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <mat-form-field  class="example-container"  >
+          <mat-label>Telefono</mat-label>
+          <input matInput placeholder="Placeholder" formControlName="telefono">
+        </mat-form-field>
+        <div  style="margin-top: -20px;" class="mda-form-msg" *ngIf="myform.get('telefono').hasError('required') && myform.get('telefono').touched">
+          <span>Este campo es <strong>requerido!</strong> </span>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <mat-form-field class="example-container" >
+          <mat-label>Estado Civil</mat-label>
+          <mat-select formControlName="estadoCivil">
+            <mat-option *ngFor="let estadocivil of estadociviles" [value]="estadocivil">
+              {{estadocivil}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div  style="margin-top: -20px;" class="mda-form-msg" *ngIf="myform.get('estadoCivil').hasError('required') && myform.get('estadoCivil').touched">
+          <span>Este campo es <strong>requerido!</strong> </span>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <mat-radio-group aria-label="Selecciones sexo" formControlName="sexo">
+          <mat-radio-button value="Masculino" style="margin-right: 10px;">Masculino</mat-radio-button>
+          <mat-radio-button value="Femenino">Femenino</mat-radio-button>
+        </mat-radio-group>
+        <div  style="margin-top: -20px;" class="mda-form-msg" *ngIf="myform.get('sexo').hasError('required') && myform.get('sexo').touched">
+          <span>Este campo es <strong>requerido!</strong> </span>
+        </div>
+      </div>
+      <br>
+      <div class="col-lg-12">
+        <button class="btn btn-success btn-lg float-end" type="button"
+        style="margin-left: 10px;" (click)="guardarEstudiante()"
+        [disabled]="myform.invalid"
+        >Aceptar</button>
+        <button class="btn btn-secondary btn-lg float-end" type="button" routerLink="/">Cancelar</button>
+       </div>
+    </form>
+  </div>
+  <div class="col-lg-4 offset-lg-2">
+    <img src="../../../assets/images/students.jpg" alt="">
+  </div>
+</div>
